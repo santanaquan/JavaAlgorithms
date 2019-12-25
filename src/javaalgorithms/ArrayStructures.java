@@ -130,7 +130,7 @@ public class ArrayStructures {
 	// Sort everything from smallest to largest.
 	public void bubbleSort() {
 		
-		for(int i = arraySize - 1; i > 1; i--) {
+		for(int i = arraySize - 1; i > 0; i--) {
 			for(int j = 0; j < i; j++) {
 				if(theArray[j] > theArray[j + 1]) {
 					swapValues(j, j+1);
@@ -146,6 +146,70 @@ public class ArrayStructures {
 		int temp = theArray[indexOne];
 		theArray[indexOne] = theArray[indexTwo];
 		theArray[indexTwo] = temp;
+	}
+	
+	public void binarySearchForValue(int value) {
+		
+		int lowIndex = 0;
+		int highIndex = arraySize - 1;
+		
+		while(lowIndex <= highIndex) {
+			
+			int middleIndex = (highIndex + lowIndex) / 2;
+			
+			if(theArray[middleIndex] < value) lowIndex = middleIndex + 1;
+			
+			else if(theArray[middleIndex] > value) highIndex = middleIndex - 1;
+			
+			else {
+				System.out.println("\nFound a Match for " + value + " at Index " + middleIndex);
+				
+				lowIndex = highIndex + 1;
+			}
+			printHorzArray(middleIndex, -1);
+		}
+	}
+	
+	public void selectionSort() {
+		
+		for(int x = 0; x < arraySize; x++) {
+			
+			int minimum = x;
+			
+			for(int y = x; y < arraySize; y++) {
+				
+				if(theArray[minimum] > theArray[y]) {
+					
+					minimum = y;
+					
+				}
+			}
+			swapValues(x, minimum);
+			printHorzArray(x, 1);
+		}
+	}
+	
+	public void insertionSort() {
+		
+		for(int i = 1; i < arraySize; i++) {
+			
+			int j = i;
+			
+			int toInsert = theArray[i];
+			
+			while((j > 0) && (theArray[j - 1] > toInsert)) {
+				
+				theArray[j] = theArray[j - 1];
+				j--;
+				printHorzArray(i , j);
+			}
+			
+			theArray[j] = toInsert;
+			printHorzArray(i , j);
+			
+			System.out.println("\nArray[i] = " + theArray[i] + 
+					" Array[j] = " + theArray[j] + " toInsert = " + toInsert);
+		}
 	}
 	
 
@@ -172,8 +236,13 @@ public class ArrayStructures {
 //		
 //		newArray.linearSearchForValue(17);
 		
-		newArray.bubbleSort();
+		// newArray.bubbleSort();
 		
+//		newArray.binarySearchForValue(11);
+		
+//		newArray.selectionSort();
+		
+		newArray.insertionSort();
 	}
 	
 	
