@@ -56,6 +56,7 @@ public class ArrayStructures {
 		}
 	}
 	
+	// Linear Search: Every index must be looked at.
 	public String linearSearchForValue(int value) {
 		
 		boolean valueInArray = false;
