@@ -61,15 +61,16 @@ public class ArrayStructures {
 		
 		boolean valueInArray = false;
 		String indexsWithValue = "";
-		System.out.print("The Value was found in the following: ");
+//		System.out.print("The Value was found in the following: ");
 		
 		for (int i = 0; i < arraySize; i++) {
 			
 			if(theArray[i] == value) {
 				valueInArray = true;
-				System.out.print(i + " ");
+//				System.out.print(i + " ");
 				indexsWithValue+= i +" ";
 			}
+			printHorzArray(i, -1);
 		}
 		if(!valueInArray) {
 			indexsWithValue = "None";
@@ -78,6 +79,75 @@ public class ArrayStructures {
 		System.out.println();
 		return indexsWithValue;
 	}
+	
+	public void printHorzArray(int i, int j) {
+		
+		for(int n = 0; n < 51; n++)System.out.print("-");
+		
+		System.out.println();
+		
+		for(int n = 0; n < arraySize; n++) {			
+			System.out.print("| " + n + " ");			
+		}
+		
+		System.out.println("|");
+		
+		for(int n = 0; n < 51; n++)System.out.print("-");
+		
+		System.out.println();
+		
+		for(int n = 0; n < arraySize; n++) {
+			System.out.print("| " + theArray[n] + " ");
+		}
+		
+		System.out.println("|");
+		
+		for(int n = 0; n < 51; n++)System.out.print("-");
+		
+		System.out.println();
+		// End of first part.
+		
+		// Added for bubble sort.
+		if(j != -1) {
+			
+			// Add the +2 to fix spacing.
+			for(int k = 0; k < ((j * 5) + 2); k++)System.out.print(" ");
+			
+			System.out.print(j);
+		}
+		
+		// Then add this code.
+		if(i != -1) {
+			
+			//Add the -1 to fix spacing.
+			for(int l = 0; l < (5 *(i - j)-1); l++)System.out.print(" ");
+			
+			System.out.print(i);
+		}
+		System.out.print(i);
+	}
+	
+	// Sort everything from smallest to largest.
+	public void bubbleSort() {
+		
+		for(int i = arraySize - 1; i > 1; i--) {
+			for(int j = 0; j < i; j++) {
+				if(theArray[j] > theArray[j + 1]) {
+					swapValues(j, j+1);
+					printHorzArray(i, j);
+				}
+				printHorzArray(i, j);
+			}
+		}
+		
+	}
+	
+	public void swapValues(int indexOne, int indexTwo) {
+		int temp = theArray[indexOne];
+		theArray[indexOne] = theArray[indexTwo];
+		theArray[indexTwo] = temp;
+	}
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -86,21 +156,23 @@ public class ArrayStructures {
 		
 		newArray.generateRandomArray();
 		
-		newArray.printArray();
+//		newArray.printArray();
+//		
+//		System.out.println(newArray.getValueAtIndex(3));
+//		
+//		System.out.println(newArray.doesArrayContainThisValue(18));
+//		
+//		newArray.deleteIndex(4);
+//		
+//		newArray.printArray();
+//		
+//		newArray.insertValue(55);
+//		
+//		newArray.printArray();
+//		
+//		newArray.linearSearchForValue(17);
 		
-		System.out.println(newArray.getValueAtIndex(3));
-		
-		System.out.println(newArray.doesArrayContainThisValue(18));
-		
-		newArray.deleteIndex(4);
-		
-		newArray.printArray();
-		
-		newArray.insertValue(55);
-		
-		newArray.printArray();
-		
-		newArray.linearSearchForValue(17);
+		newArray.bubbleSort();
 		
 	}
 	
